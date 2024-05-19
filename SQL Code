@@ -1,0 +1,90 @@
+-- Create database for bus management system
+CREATE DATABASE IF NOT EXISTS bus_management;
+
+-- Use the database
+USE bus_management;
+
+-- Create table for storing login credentials
+CREATE TABLE IF NOT EXISTS login (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
+-- Insert sample login data
+INSERT INTO login (username, password) VALUES ('admin', 'admin123');
+
+-- Create table for storing buses
+CREATE TABLE IF NOT EXISTS buses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bus_number VARCHAR(20) NOT NULL,
+    capacity INT NOT NULL
+);
+
+-- Create table for storing bus schedule
+CREATE TABLE IF NOT EXISTS bus_schedule (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bus_number VARCHAR(20) NOT NULL,
+    departure_time TIME NOT NULL,
+    arrival_time TIME NOT NULL,
+    source VARCHAR(100) NOT NULL,
+    destination VARCHAR(100) NOT NULL,
+    fare DECIMAL(10, 2) NOT NULL
+);
+
+-- Create table for storing bus reports
+CREATE TABLE IF NOT EXISTS bus_reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bus_number VARCHAR(20) NOT NULL,
+    report_date DATE NOT NULL,
+    total_passengers INT NOT NULL,
+    total_revenue DECIMAL(10, 2) NOT NULL
+);
+
+-- Create table for storing traveller information
+CREATE TABLE IF NOT EXISTS travellers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    cnic VARCHAR(20) NOT NULL,
+    phone VARCHAR(15) NOT NULL
+);
+
+-- Function to insert a traveller into the travellers table
+DELIMITER $$
+CREATE FUNCTION insert_traveller (
+    traveller_name VARCHAR(100),
+    traveller_age INT,
+    traveller_email VARCHAR(100),
+    traveller_cnic VARCHAR(20),
+    traveller_phone VARCHAR(15)
+) RETURNS INT
+BEGIN
+    INSERT INTO travellers (name, age, email, cnic, phone) 
+    VALUES (traveller_name, traveller_age, traveller_email, traveller_cnic, traveller_phone);
+    RETURN LAST_INSERT_ID();
+END $$
+DELIMITER ;
+
+-- Function to retrieve all travellers from the travellers table
+DELIMITER $$
+CREATE FUNCTION get_all_travellers ()
+RETURNS TABLE (
+    traveller_id INT,
+    traveller_name VARCHAR(100),
+    traveller_age INT,
+    traveller_email VARCHAR(100),
+    traveller_cnic VARCHAR(20),
+    traveller_phone VARCHAR(15)
+)
+BEGIN
+    RETURN SELECT id, name, age, email, cnic, phone FROM travellers;
+END $$
+DELIMITER ;
+
+-- Example usage of the insert_traveller function
+SELECT insert_traveller('John Doe', 30, 'john.doe@example.com', '12345-6789012-3', '1234567890');
+
+-- Example usage of the get_all_travellers function
+SELECT * FROM get_all_travellers();
