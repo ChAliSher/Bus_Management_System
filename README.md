@@ -1,4 +1,4 @@
-![image](https://github.com/ChAliSher/Bus_Management_System/assets/152646770/e0888041-f4d3-48d1-bac6-c5580b4962e9)
+![image](https://github.com/ChAliSher/Bus_Management_System/assets/152646770/2d8d2cbf-c168-49d0-bba1-bd5e417e052a)
 
 You should open the Java files on the software IntelliJ IDEA.
 I have uploaded the Java zip that includes Java front-end files.
