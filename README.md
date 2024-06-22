@@ -1,4 +1,7 @@
-I have uploaded two files in total.
-One is for the SQL code and the other one is a zip file of Java for the front end.
-My project partner is Sarim Ali 232466 and my roll no is 232418.
-The Java connector files are empty as i added them again in the zip file.
+![image](https://github.com/ChAliSher/Bus_Management_System/assets/152646770/e0888041-f4d3-48d1-bac6-c5580b4962e9)
+
+You should open the Java files on the software IntelliJ IDEA.
+I have uploaded the Java zip that includes Java front-end files.
+There is the database code as well that can be run on MYSQL Workbench.
+Moreover, I have added the java connectors for the IntelliJ IDEA software that will help you connect the Java front-end with MYSQL database.
+To understand, how to connect the java connector with SQL, I recommend you to watch a YouTube tutorial and then go for it.
